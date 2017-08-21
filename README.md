@@ -4,14 +4,14 @@ My scripts from the game Screeps
 
 ## What currently happens:
 
-Auto Spawn Harvester x 2
-Auto Spawn Upgrader x 2
-Auto Spawn Roady x 1
-Auto Spawn Builder x 4
-Manually build roads
-Manually put down extenders/containers
-Manually build walls
-Manually build turrets
+* Auto Spawn Harvester x 2
+* Auto Spawn Upgrader x 2
+* Auto Spawn Roady x 1
+* Auto Spawn Builder x 4
+* Manually build roads
+* Manually put down extenders/containers
+* Manually build walls
+* Manually build turrets
 
 ## ToDo List:
 
