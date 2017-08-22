@@ -14,9 +14,9 @@ var roleRoady = {
 	        creep.say('🚧 Roads');
 	    }
 
-		/* if roady is in building mode then create an array of buildings with health less than 100%, move towards and draw path */
+		/* if roady is in building mode then create an array of roads and containers with health less than 100%, move towards and draw path */
 	    if(creep.memory.building) {
-	        var targets = creep.room.find(FIND_STRUCTURES, { filter: object => object.structureType == STRUCTURE_ROAD && object.hits < object.hitsMax});
+	        var targets = creep.room.find(FIND_STRUCTURES, { filter: object => object.structureType == STRUCTURE_ROAD && object.hits < object.hitsMax || object.structureType == STRUCTURE_CONTAINER && object.hits < object.hitsMax});
             if(targets.length) {
                 if(creep.repair(targets[0]) == ERR_NOT_IN_RANGE) {
                     creep.moveTo(targets[0], {visualizePathStyle: {stroke: '#ffffff'}});
