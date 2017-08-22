@@ -8,15 +8,15 @@ var roleCarrier = {
             creep.memory.carrying = false;
             creep.say('🔄 Collecting');
 	    }
-		/* if carrier is full of energy switch to carrying mode and announce */
-	    if(!creep.memory.carrying && creep.carry.energy == creep.carryCapacity) {
+		/* if carrier has any energy switch to carrying mode and announce */
+	    if(!creep.memory.carrying && creep.carry.energy > 0) {
 	        creep.memory.carrying = true;
 	        creep.say('🚧 Carrying');
 	    }
 
 		/* if carrier is in carrying mode then create an array of stuff that needs to be filled, move towards and draw path */
 	    if(creep.memory.carrying) {
-	        var targets = creep.room.find(FIND_STRUCTURES, { filter: (structure) => {
+	        var targets = creep.room.find(FIND_STRUCTURES, { filter: (structure) 	=> {
 					return (structure.structureType == STRUCTURE_EXTENSION || structure.structureType == STRUCTURE_SPAWN || structure.structureType == STRUCTURE_TOWER) && structure.energy < structure.energyCapacity;
 				}});
             if(targets.length) {
