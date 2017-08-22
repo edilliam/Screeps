@@ -10,15 +10,22 @@ var roleHarvester = {
                 creep.moveTo(sources[0], {visualizePathStyle: {stroke: '#ffaa00'}});
             }
         }
-		/* else if full of energy create array of structures that are not full of energy and head to them to deposit and draw path */
+		/* else if full of energy carry energy first to containers then to other structures */
         else {
+			var containers = creep.room.find(FIND_STRUCTURES, {
+				filter: structure => structure.structureType == STRUCTURE_CONTAINER && structure.store[RESOURCE_ENERGY] < structure.storeCapacity
+			});
+			if(containers.length){
+				if(creep.transfer(containers[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+                    creep.moveTo(containers[0], {visualizePathStyle: {stroke: '#ffffff'}});
+                }
+			}
             var targets = creep.room.find(FIND_STRUCTURES, {
-                    filter: (structure) => {
-                        return (structure.structureType == STRUCTURE_EXTENSION || structure.structureType == STRUCTURE_SPAWN || structure.structureType == STRUCTURE_CONTAINER) &&
-                            structure.energy < structure.energyCapacity;
-                    }
+				filter: (structure) => {
+					return (structure.structureType == STRUCTURE_TOWER || structure.structureType == STRUCTURE_EXTENSION || structure.structureType == STRUCTURE_SPAWN) && structure.energy < structure.energyCapacity;
+				}
             });
-            if(targets.length > 0) {
+            if(targets.length) {
                 if(creep.transfer(targets[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
                     creep.moveTo(targets[0], {visualizePathStyle: {stroke: '#ffffff'}});
                 }

@@ -2,6 +2,7 @@ var roleHarvester = require('role.harvester');
 var roleUpgrader = require('role.upgrader');
 var roleBuilder = require('role.builder');
 var roleRoady = require('role.roady');
+var roleCarrier = require('role.carrier');
 var spawn = require('spawn');
 var defense = require('defense');
 
@@ -38,6 +39,9 @@ module.exports.loop = function () {
         }
 		if(creep.memory.role == 'roady') {
             roleRoady.run(creep);
+        }
+		if(creep.memory.role == 'carrier') {
+            roleCarrier.run(creep);
         }
     }
 }
